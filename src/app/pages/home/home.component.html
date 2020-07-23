@@ -1,0 +1,34 @@
+<br>
+<h5>All Products</h5>
+<br>
+<mat-accordion>
+  <mat-expansion-panel class="card" *ngFor="let product of products" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       <b> {{product.product_name}}</b>
+      </mat-panel-title>
+      <mat-panel-description>
+       <label> Cartoon Price : {{product.cartoon_price | currency : 'LKR ' }}</label>
+        &nbsp;
+        &nbsp;
+       <label> Units per catroon : {{product.units_per_cartoon }}</label>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Product Count</th>
+        <th scope="col">Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let unit of product.productUnitPrices">
+        <td>{{unit.units}}</td>
+        <td>{{unit.unitPrice | currency : 'LKR '}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-expansion-panel>
+
+</mat-accordion>
+

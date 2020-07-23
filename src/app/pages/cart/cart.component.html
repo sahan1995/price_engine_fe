@@ -1,0 +1,110 @@
+<br>
+<h5>Shopping Cart</h5>
+<br>
+
+
+<div class="row">
+  <div class="col-3" *ngFor="let product of products">
+    <div class="card" (click)="addToCart(product)">
+      <div class="container">
+        <h5><b>{{product.product_name}}</b></h5>
+        <p>Units per cartoon : {{product.units_per_cartoon}}</p>
+        <p>Cartoon Price : {{product.cartoon_price | currency: 'LKR '}}</p>
+        <p>Unit Price : {{product.perUnitPrice | currency: 'LKR '}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+<!--<div class="row" >-->
+<!--  <div class="col-6 table-wrapper-scroll-y my-custom-scrollbar" >-->
+<!--    <table class="table table-bordered  table-striped mb-0">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col">Product name</th>-->
+<!--        <th scope="col">Type</th>-->
+<!--        <th scope="col">Qty</th>-->
+<!--        <th></th>-->
+<!--        <th></th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody *ngFor="let product of cartProducts" style="padding: 10px">-->
+<!--        <td> {{product.product_name}} </td>-->
+<!--        <td>-->
+
+<!--        </td>-->
+<!--      <td>-->
+<!--        <div class="form-group">-->
+<!--          <input type="number" class="form-control">-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <td></td>-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+<!--  </div>-->
+<!--  <table class="table table-bordered  table-striped mb-0">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th scope="col">Product name</th>-->
+<!--      <th scope="col">Type</th>-->
+<!--      <th scope="col">Qty</th>-->
+<!--      <th></th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+
+<!--  </table>-->
+
+<!--</div>-->
+<div class="container">
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th style="width:30%">Product</th>
+      <th style="width:20%">Type</th>
+      <th style="width:10%">Quantity</th>
+      <th style="width:22%" class="text-center">Subtotal</th>
+      <th style="width:10%">Discount</th>
+<!--      <th style="width:10%"></th>-->
+    </tr>
+    </thead>
+    <tbody >
+    <tr *ngFor="let product of cartProducts; let index = index">
+      <td data-th="Product">
+        <div class="row">
+          <div class="col-sm-10">
+            <h6 class="nomargin">{{product.product_name}}</h6>
+          </div>
+        </div>
+      </td>
+      <td data-th="Type">
+        <select class="form-control" [(ngModel)]="product.type">
+          <option value="cartoon">Cartoon</option>
+          <option value="single">Single Unit</option>
+        </select>
+      </td>
+      <td class="actions" data-th="Quantity">
+      <input type="number" class="form-control" [(ngModel)]="product.qty">
+    </td>
+      <td class="actions" data-th="Subtotal">
+        <label  class="form-control" *ngIf="!product.sub_total"> {{ 0 | currency: 'LKR '}} </label>
+        <label  class="form-control" *ngIf="product.sub_total"> {{product.sub_total | currency: 'LKR '}} </label>
+      </td>
+      <td class="actions" data-th="Discount">
+        <input type="number" class="form-control" disabled>
+      </td>
+<!--      <td class="actions-trash" (click)="remove(index)">-->
+<!--        <i class="fa fa-trash"></i>-->
+<!--      </td>-->
+    </tr>
+    </tbody>
+
+    <tfoot>
+    <tr>
+      <td><a class="btn btn-warning" (click)="calculatePrice()"><i class="fa fa-angle-left"></i> Calculate the Price</a></td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
